@@ -8,8 +8,7 @@ from ...ops.roiaware_pool3d import roiaware_pool3d_utils
 from ...utils import box_utils, common_utils
 from ..dataset import DatasetTemplate
 
-
-class CustomDataset(DatasetTemplate):
+class v2v4real(DatasetTemplate):
     def __init__(self, dataset_cfg, class_names, training=True, root_path=None, logger=None):
         """
         Args:
@@ -23,7 +22,6 @@ class CustomDataset(DatasetTemplate):
             dataset_cfg=dataset_cfg, class_names=class_names, training=training, root_path=root_path, logger=logger
         )
         self.split = self.dataset_cfg.DATA_SPLIT[self.mode]
-
         split_dir = os.path.join(self.root_path, 'ImageSets', (self.split + '.txt'))
         self.sample_id_list = [x.strip() for x in open(split_dir).readlines()] if os.path.exists(split_dir) else None
 
@@ -65,7 +63,6 @@ class CustomDataset(DatasetTemplate):
     def get_lidar(self, sample_idx):
         # Construct the path to the LiDAR file
         lidar_file = self.root_path / 'points' / f"{sample_idx}.bin"  # Using f-string for better readability
-        print(f"Checking for LiDAR file at: {lidar_file}")  # Debug statement
 
         # Ensure the file exists
         if not lidar_file.exists():
@@ -244,7 +241,7 @@ class CustomDataset(DatasetTemplate):
 
 
 def create_custom_infos(dataset_cfg, class_names, data_path, save_path, workers=4):
-    dataset = CustomDataset(
+    dataset = v2v4real(
         dataset_cfg=dataset_cfg, class_names=class_names, root_path=data_path,
         training=False, logger=common_utils.create_logger()
     )
@@ -290,7 +287,7 @@ if __name__ == '__main__':
         ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
         create_custom_infos(
             dataset_cfg=dataset_cfg,
-            class_names=['Vehicle', 'Pedestrian', 'Cyclist'],
-            data_path=ROOT_DIR / 'data' / 'custom',
-            save_path=ROOT_DIR / 'data' / 'custom',
+            class_names=['Car', 'Pedestrian', 'Cyclist'],
+            data_path=ROOT_DIR / 'data' / 'v2v4real',
+            save_path=ROOT_DIR / 'data' / 'v2v4real',
         )
