@@ -1,0 +1,104 @@
+Script started on 2024-05-29 01:07:19-0700
+    python tools/demo.py --cfg_file tools/cfgs/custom_models/pv_rcnn.yaml --data_path inference_data/ --ckpt output/custom_models/pv_rcnn/default/ckpt/checkpoint_epoch_80.pth
+    ```
+
+<figure>
+<img src="inference_result/1.png" width="600" height="400">
+<figcaption>Inference Result 1 on untrained data</figcaption>
+</figure>
+
+<figure>
+<img src="inference_result/2.png" width="600" height="400">
+<figcaption>Inference Result 2 on untrained data</figcaption>
+</figure>
+
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$     python tools/demo.py --cfg_file tools/cfgs/custom_models/pv_rcnn.yaml --data_path inference_data/ --ckpt output/custom_models/pv_rcnn/defaault/ckpt/checkpoint_epoch_80.pth
+Traceback (most recent call last):
+  File "/data/shivam/mm3d/OpenPCDet_for_V2V4Real/tools/demo.py", line 6, in <module>
+    import open3d
+ModuleNotFoundError: No module named 'open3d'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/shivam/mm3d/OpenPCDet_for_V2V4Real/tools/demo.py", line 10, in <module>
+    import mayavi.mlab as mlab
+ModuleNotFoundError: No module named 'mayavi'
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$     ```
+> 
+> <figure>
+> <img src="inference_result/1.png" width="600" height="400">
+> <figcaption>Inference Result 1 on untrained data</figcaption>
+> </figure>
+> 
+> <figure>
+> <img src="inference_result/2.png" width="600" height="400">
+> <figcaption>Inference Result 2 on untrained data</figcaption>
+> </figure>
+> 
+> ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ [H[2J(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ ^C
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ d 
+bash: d: command not found
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ 
+
+
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ 
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ 
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ 
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ 
+(base) ]0;shivam@sci06: /data/shivam/mm3d/OpenPCDet_for_V2V4Real[01;32mshivam@sci06[00m:[01;34m/data/shivam/mm3d/OpenPCDet_for_V2V4Real[00m$ exit
+
+Script done on 2024-05-29 01:08:15-0700

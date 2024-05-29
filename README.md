@@ -1,4 +1,4 @@
-# LiDAR-Based Object Detection on Custom Data using OpenPCDet
+# OpenPCDet for LiDAR-Based Object Detection on V2V4Real Dataset
 
 This repository is an adapted version of the original [OpenPCDet](https://arxiv.org/abs/1812.04244) project. Our enhancements include customized configuration files and utility scripts to enable training on the custom [V2V4Real](https://github.com/ucla-mobility/V2V4Real) dataset using the PV_RCNN model.
 
@@ -13,25 +13,27 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
     ```
     [
     {
+        "obj_attr": "static",
         "obj_id": "1",
         "obj_type": "Car",
         "psr": {
-            "position": {
-                "x": -20.232923334766838,
-                "y": -0.010953035456623184,
-                "z": -1.1805384281008844
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0.07853981633974486
-            },
-            "scale": {
-                "x": 3.9799348184967185,
-                "y": 2.0622318234681405,
-                "z": 1.6980521556897767
-            }
+        "position": {
+            "x": -29.00726474921521,
+            "y": -11.374487037642584,
+            "z": -0.49037795901298487
+        },
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 3.036872898470133
+        },
+        "scale": {
+            "x": 4.347834100224233,
+            "y": 1.7882106094714172,
+            "z": 1.621284008026123
         }
+        },
+        "ass_id": -1
     }
     ]
     ```
@@ -45,10 +47,24 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
 
     To automate this conversion, run the following script:
     ```
-    python myscripts/convert_json_to_txt.py <json_directory>
+    python scripts/convert_json_to_txt.py -s /path/to/source -c tesla -t /path/to/txt_target -p /path/to/pcd_target
+    ```
+    You can also run the above multiple times for multiple source directory to save in the same target directory. It will make sure the new filenames are added to avoid any redundant filename and also accordingly save both the pcd and label files.
+
+    Before running the above script check the map classes in the code. This maps classes of V2V4Real to KITTI dataset classes.
+    ```
+    def map_classes(category_name):
+    class_mapping = {
+        'Car': 'Car',
+        'Truck': 'Car',
+        'Van': 'Car',
+        'Pedestrian': 'Pedestrian',
+        'Cyclist': 'Cyclist',
+    }
+    return class_mapping.get(category_name, 'Misc')
     ```
 
-3. Divide the dataset into training and validation sets. Create an `ImageSets` directory under `/data/custom`. List the indices of the training data in `train.txt` and the indices of the validation data in `val.txt`.
+3. Divide the dataset into training and validation sets. Create an `ImageSets` directory under `/data/custom`. 
 
     After these steps, your directory structure should look like this:
     ```
@@ -67,55 +83,58 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
     ├── pcdet
     ├── tools
     ```
+    List the indices of the training data in `train.txt` and the indices of the validation data in `val.txt`. To automate this process with a 80-20 split you can run the following script.
+    ```
+    python script/create_ImageSets.py
+    ```
 
-4. Adjust the configuration file found at `/tools/cfgs/dataset_configs/custom_dataset.yaml`.
+4. Adjust the configuration file found at `/tools/cfgs/dataset_configs/v2v4real_dataset.yaml`.
 
 * Update the `POINT_CLOUD_RANGE` parameter to define the minimum and maximum values for the x, y, and z dimensions in the format [min_x, min_y, min_z, max_x, max_y, max_z]. You can use known values from the dataset or run the following script after setting the correct path for the LiDAR data files:
     ```
-    python myscripts/point_cloud_range.py
+    python myscripts/get_point_cloud_range.py path/to/data_root/points
     ```
 
-* Set the `CLASS_NAMES` parameter to match the classes in your dataset. The V2V4Real dataset contains five classes, but we use only the `Car` class for training (Day 19, testoutput_CAV_data_2022-03-15-09-54-40_0, tesla).
+* Set the `CLASS_NAMES` parameter to match the classes in your dataset. The V2V4Real dataset contains five classes, which we changed to only three classes while json to text conversion. For training purpose we will use two classes `Car` and `Pedestrian`. We have used files from 3 directories for training: 
 
 * Define the `MAP_CLASS_TO_KITTI` parameter to map custom dataset classes to existing KITTI classes.
 
-* (Important) Configure the `VOXEL_SIZE` parameter under `DATA_PROCESSOR / - NAME: transform_points_to_voxels / VOXEL_SIZE`. For PV-RCNN, the point cloud range and voxel size must satisfy these conditions to avoid dimension mismatch in model layers:
+* (Important) Configure the `VOXEL_SIZE` parameter. For PV-RCNN, the point cloud range and voxel size must satisfy these conditions to avoid dimension mismatch in model layers:
     1. The point cloud range along the z-axis divided by the voxel size should be 40.
     2. The point cloud range along the x&y-axis divided by the voxel size should be a multiple of 16.
 
-    The final values for `POINT_CLOUD_RANGE` and `VOXEL_SIZE` are:
+    The final values for `POINT_CLOUD_RANGE` and `VOXEL_SIZE` for our cases are:
     ```
-    POINT_CLOUD_RANGE: [-128, -128, -17, 128, 8, 15]
-    VOXEL_SIZE: [0.1, 0.1, 0.8]
+    POINT_CLOUD_RANGE: [-129.6, -129.6, -20, 129.6, 129.6, 20]
+    VOXEL_SIZE: [0.1, 0.1, 1]
     ```
 
 5. Generate the custom_info files by executing the following command:
     ```
-    python -m pcdet.datasets.custom.custom_dataset create_custom_infos tools/cfgs/dataset_configs/custom_dataset.yaml
+    python -m pcdet.datasets.custom.v2v4real create_custom_infos tools/cfgs/dataset_configs/v2v4real_dataset.yaml
     ```
 
 ## 2. Training
-1. Modify the model configuration file `pv_rcnn.yaml` located at `tools/cfgs/custom_models/pv_rcnn.yaml`.
+1. Modify the model configuration file `pv_rcnn.yaml` and customize it for v2v4real dataset. The updated yaml file can be located at `tools/cfgs/custom_models/pv_rcnn_v2v4real.yaml`.
 
 * Set the path to the dataset configuration file:
     ```
     DATA_CONFIG:
-        _BASE_CONFIG_: /path/to/OpenPCDet/tools/cfgs/dataset_configs/custom_dataset.yaml
+        _BASE_CONFIG_: /path/to/OpenPCDet/tools/cfgs/dataset_configs/v2v4real_dataset.yaml
     ```
 
 * Update the `CLASS_NAMES` parameter:
     ```
-    CLASS_NAMES: ['Car']
+    CLASS_NAMES: ['Car', 'Pedestrian']
     ```
 
 2. Execute the `train.py` script. Note that the batch size is set to 1 due to GPU memory limitations:
     ```
-    python train.py --cfg_file cfgs/custom_models/pv_rcnn.yaml --batch_size 1
+    python train.py --cfg_file cfgs/custom_models/pv_rcnn_v2v4real.yaml --batch_size 1
     ```
 
 ## 3. Inference
 Use the provided `demo.py` script to visualize the inference results. Place the LiDAR files for inference in the `inference_data` directory:
-    ```
+
     python tools/demo.py --cfg_file tools/cfgs/custom_models/pv_rcnn.yaml --data_path inference_data/ --ckpt output/custom_models/pv_rcnn/default/ckpt/checkpoint_epoch_80.pth
-    ```
 

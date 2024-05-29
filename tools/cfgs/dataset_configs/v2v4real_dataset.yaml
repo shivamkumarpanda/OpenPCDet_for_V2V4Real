@@ -2,7 +2,6 @@ DATASET: 'CustomDataset'
 DATA_PATH: '../data/v2v4real'
 
 POINT_CLOUD_RANGE: [-129.6, -129.6, -20, 129.6, 129.6, 20]
-# POINT_CLOUD_RANGE: [-128, -128, -16, 128, 8, 16]
 
 MAP_CLASS_TO_KITTI: {
     'Car': 'Car',
