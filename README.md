@@ -139,7 +139,7 @@ Use the provided `demo.py` script to visualize the inference results. Place the 
 
     python tools/demo.py --cfg_file tools/cfgs/custom_models/pv_rcnn.yaml --data_path inference_data/ --ckpt output/custom_models/pv_rcnn/default/ckpt/checkpoint_epoch_80.pth
 
-If you are running it on a server you can use `run_with_xvfb`
+If you are running it on a server you can use `run_with_xvfb.sh`
 
 ```
 sudo apt-get install xvfb
