@@ -90,12 +90,12 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
 
 4. Adjust the configuration file found at `/tools/cfgs/dataset_configs/v2v4real_dataset.yaml`.
 
-* Update the `POINT_CLOUD_RANGE` parameter to define the minimum and maximum values for the x, y, and z dimensions in the format [min_x, min_y, min_z, max_x, max_y, max_z]. You can use known values from the dataset or run the following script after setting the correct path for the LiDAR data files:
+* Update the `POINT_CLOUD_RANGE` parameter to define the minimum and maximum values for the x, y, and z dimensions in the format [min_x, min_y, min_z, max_x, max_y, max_z]. You can use known values from the dataset or run the following script after setting the correct path for the LiDAR data files: 
     ```
     python myscripts/get_point_cloud_range.py path/to/data_root/points
     ```
 
-* Set the `CLASS_NAMES` parameter to match the classes in your dataset. The V2V4Real dataset contains five classes, which we changed to only three classes while json to text conversion. For training purpose we will use two classes `Car` and `Pedestrian`. We have used files from 3 directories for training: 
+* Set the `CLASS_NAMES` parameter to match the classes in your dataset. The V2V4Real dataset contains five classes, which we changed to only three classes while json to text conversion. For training purpose we will use two classes `Car` and `Pedestrian`. We have used files from 3 directories for training: `Day20/testoutput_CAV_data_2022-03-17-10-43-13`, `Day20/testoutput_CAV_data_2022-03-17-11-02-23_1` and `Day20/testoutput_CAV_data_2022-03-17-12-04-22_0` 
 
 * Define the `MAP_CLASS_TO_KITTI` parameter to map custom dataset classes to existing KITTI classes.
 
