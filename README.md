@@ -132,7 +132,7 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
     ```
     python train.py --cfg_file cfgs/custom_models/second_v2v4real.yaml --batch_size 1
     ```
-We have also carried out training on PV-RCNN model. It can be done by substituting `second_v2v4real.yaml` by `pv_rcnn_v2v4real.yaml`
+We have also carried out training on PV-RCNN model. It can be done by substituting `second_v2v4real.yaml` by `pv_rcnn_v2v4real.yaml`. The trained checkpoints can be found [here](https://drive.google.com/drive/folders/12MyIx59kfbRQIQT_gO4Dti1Twd0sYeUL?usp=sharing)
 
 ## 3. Inference
 Use the provided `demo.py` script to visualize the inference results. Place the LiDAR files for inference in the `inference_data` directory:
