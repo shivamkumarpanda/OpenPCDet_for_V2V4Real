@@ -2,17 +2,18 @@ import argparse
 import glob
 from pathlib import Path
 
-try:
-    import open3d
-    from visual_utils import open3d_vis_utils as V
-    OPEN3D_FLAG = True
-except:
-    import mayavi.mlab as mlab
-    from visual_utils import visualize_utils as V
-    OPEN3D_FLAG = False
+# try:
+#     import open3d
+#     from visual_utils import open3d_vis_utils as V
+#     OPEN3D_FLAG = True
+# except:
+import mayavi.mlab as mlab
+from visual_utils import visualize_utils as V
+OPEN3D_FLAG = False
 
 import numpy as np
 import torch
+import pudb
 
 from pcdet.config import cfg, cfg_from_yaml_file
 from pcdet.datasets import DatasetTemplate
@@ -90,6 +91,7 @@ def main():
     model.load_params_from_file(filename=args.ckpt, logger=logger, to_cpu=True)
     model.cuda()
     model.eval()
+    
     with torch.no_grad():
         for idx, data_dict in enumerate(demo_dataset):
             logger.info(f'Visualized sample index: \t{idx + 1}')
@@ -97,13 +99,20 @@ def main():
             load_data_to_gpu(data_dict)
             pred_dicts, _ = model.forward(data_dict)
 
-            V.draw_scenes(
-                points=data_dict['points'][:, 1:], ref_boxes=pred_dicts[0]['pred_boxes'],
-                ref_scores=pred_dicts[0]['pred_scores'], ref_labels=pred_dicts[0]['pred_labels']
-            )
+            if OPEN3D_FLAG:
+                V.draw_scenes(
+                    points=data_dict['points'][:, 1:], ref_boxes=pred_dicts[0]['pred_boxes'],
+                    ref_scores=pred_dicts[0]['pred_scores'], ref_labels=pred_dicts[0]['pred_labels']
+                )
+                open3d.visualization.draw_geometries([V.create_point_cloud(data_dict['points'][:, 1:])])
+            else:
+                V.draw_scenes(
+                    points=data_dict['points'][:, 1:], ref_boxes=pred_dicts[0]['pred_boxes'],
+                    ref_scores=pred_dicts[0]['pred_scores'], ref_labels=pred_dicts[0]['pred_labels']
+                )
+                mlab.savefig(f"demo_output/visualization_{idx + 1}.png")
+                mlab.close()
 
-            if not OPEN3D_FLAG:
-                mlab.show(stop=True)
 
     logger.info('Demo done.')
 

@@ -64,13 +64,13 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
     return class_mapping.get(category_name, 'Misc')
     ```
 
-3. Divide the dataset into training and validation sets. Create an `ImageSets` directory under `/data/custom`. 
+3. Divide the dataset into training and validation sets. Create an `ImageSets` directory under `/data/v2v4real`. 
 
     After these steps, your directory structure should look like this:
     ```
     OpenPCDet
     ├── data
-    │   ├── custom
+    │   ├── v2v4real
     │   │   ├── ImageSets
     │   │   │   ├── train.txt
     │   │   │   ├── val.txt
@@ -99,7 +99,7 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
 
 * Define the `MAP_CLASS_TO_KITTI` parameter to map custom dataset classes to existing KITTI classes.
 
-* (Important) Configure the `VOXEL_SIZE` parameter. For PV-RCNN, the point cloud range and voxel size must satisfy these conditions to avoid dimension mismatch in model layers:
+* (Important) Configure the `VOXEL_SIZE` parameter. For Second and PV-RCNN, the point cloud range and voxel size must satisfy these conditions to avoid dimension mismatch in model layers:
     1. The point cloud range along the z-axis divided by the voxel size should be 40.
     2. The point cloud range along the x&y-axis divided by the voxel size should be a multiple of 16.
 
@@ -115,7 +115,7 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
     ```
 
 ## 2. Training
-1. Modify the model configuration file `pv_rcnn.yaml` and customize it for v2v4real dataset. The updated yaml file can be located at `tools/cfgs/custom_models/pv_rcnn_v2v4real.yaml`.
+1. Modify the model configuration file `second.yaml` and customize it for v2v4real dataset. The updated yaml file can be located at `tools/cfgs/custom_models/second_v2v4real.yaml`.
 
 * Set the path to the dataset configuration file:
     ```
@@ -130,11 +130,38 @@ This repository is an adapted version of the original [OpenPCDet](https://arxiv.
 
 2. Execute the `train.py` script. Note that the batch size is set to 1 due to GPU memory limitations:
     ```
-    python train.py --cfg_file cfgs/custom_models/pv_rcnn_v2v4real.yaml --batch_size 1
+    python train.py --cfg_file cfgs/custom_models/second_v2v4real.yaml --batch_size 1
     ```
+We have also carried out training on PV-RCNN model. It can be done by substituting `second_v2v4real.yaml` by `pv_rcnn_v2v4real.yaml`
 
 ## 3. Inference
 Use the provided `demo.py` script to visualize the inference results. Place the LiDAR files for inference in the `inference_data` directory:
 
     python tools/demo.py --cfg_file tools/cfgs/custom_models/pv_rcnn.yaml --data_path inference_data/ --ckpt output/custom_models/pv_rcnn/default/ckpt/checkpoint_epoch_80.pth
 
+If you are running it on a server you can use `run_with_xvfb`
+
+```
+sudo apt-get install xvfb
+chmod +x run_with_xvfb.sh
+./run_with_xvfb.sh /path/to/cfgs/kitti_models/second.yaml /path/to/data /path/to/checkpoint.pth
+```
+It should store your demo results to `demo_output/`.
+
+
+Following are the demo inferences we get from checkpoints trained with `second_v2v4real.yaml`
+
+<figure>
+<img src="demo_output/visualization_1.png" width="600" height="400">
+<figcaption>Demo 1</figcaption>
+</figure>
+
+<figure>
+<img src="demo_output/visualization_2.png" width="600" height="400">
+<figcaption>Demo 2. Here a pedestrian is also detected</figcaption>
+</figure>
+
+<figure>
+<img src="demo_output/visualization_3.png" width="600" height="400">
+<figcaption>Demo 3. Here a pedestrian is detected as well</figcaption>
+</figure>
